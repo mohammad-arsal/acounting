@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services - Bram Accounting</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2B4B80',
+                        secondary: '#1A365D'
+                    },
+                    borderRadius: {
+                        'none': '0px',
+                        'sm': '4px',
+                        DEFAULT: '8px',
+                        'md': '12px',
+                        'lg': '16px',
+                        'xl': '20px',
+                        '2xl': '24px',
+                        '3xl': '32px',
+                        'full': '9999px',
+                        'button': '8px'
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :where([class^="ri-"])::before {
+            content: "\f3c2";
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .fade-in-delay-1 {
+            animation-delay: 0.2s;
+        }
+
+        .fade-in-delay-2 {
+            animation-delay: 0.4s;
+        }
+
+        .fade-in-delay-3 {
+            animation-delay: 0.6s;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hover-scale {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .hover-scale:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-card {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(30, 136, 229, 0.15);
+        }
+
+        .service-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out;
+        }
+
+        .service-details.expanded {
+            max-height: 2000px;
+        }
+
+        .pricing-card {
+            transition: all 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
+        }
+
+        .pricing-card.featured {
+            transform: scale(1.05);
+            border: 3px solid #1E88E5;
+        }
+
+        .comparison-table {
+            overflow-x: auto;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+    </style>
+</head>
+
+<body class="font-inter bg-white">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 bg-white shadow-sm z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <img src="./image/PNG (3).png" alt="Bram Accounting Logo"
+                        class="h-10 w-auto object-contain flex-shrink-0">
+                    <h1 class="text-2xl font-bold text-secondary">Bram Accounting</h1>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="./index.html" class="text-secondary hover:text-primary transition-colors">Home</a>
+                    <a href="./services.html" class="text-secondary hover:text-primary transition-colors">Services</a>
+                    <a href="./about.html" class="text-secondary hover:text-primary transition-colors">About</a>
+                    <a href="/firm.html" class="text-secondary hover:text-primary transition-colors">Company</a>
+                    <a href="./contact.html" class="text-secondary hover:text-primary transition-colors">Contact</a>
+                </div>
+
+                <!-- CTA Button -->
+                <a href="https://wa.me/923226790006">
+                    <button
+                        class="hidden md:inline bg-primary text-white px-6 py-2 !rounded-button hover:bg-blue-600 transition-colors whitespace-nowrap ripple">
+                        Book Free Consultation
+                    </button>
+                </a>
+
+                <!-- Mobile Hamburger -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" class="text-gray-700 focus:outline-none">
+                        <!-- Hamburger icon -->
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu (hidden by default) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg">
+            <div class="px-4 pt-2 pb-4 space-y-2">
+                <a href="./index.html" class="block text-secondary hover:text-primary transition-colors">Home</a>
+                <a href="./services.html" class="block text-secondary hover:text-primary transition-colors">Services</a>
+                <a href="./about.html" class="block text-secondary hover:text-primary transition-colors">About</a>
+                <a href="./firm.html" class="text-secondary hover:text-primary transition-colors">Company</a>
+                <a href="#contact" class="block text-secondary hover:text-primary transition-colors">Contact</a>
+                <a href="https://wa.me/923226790006">
+                    <button
+                        class="hidden md:inline bg-primary text-white px-6 py-2 !rounded-button hover:bg-blue-600 transition-colors whitespace-nowrap ripple">
+                        Book Free Consultation
+                    </button>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <script>
+        // Toggle mobile menu
+        document.getElementById("mobile-menu-button").addEventListener("click", function () {
+            document.getElementById("mobile-menu").classList.toggle("hidden");
+        });
+    </script>
+
+
+    <!-- Hero Section -->
+    <section class="pt-24 pb-16 bg-gradient-to-br from-primary/5 to-blue-50 mt-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="fade-in">
+                <h1 class="text-5xl md:text-6xl font-bold text-secondary mb-6 mt-12">
+                    Our Comprehensive<br>Accounting Services
+                </h1>
+                <p class="text-xl text-gray-600 mb-8 max-w-3xl mx-auto fade-in-delay-1">
+                    Discover our full range of professional accounting solutions designed to streamline your finances,
+                    ensure compliance, and drive business growth.
+                </p>
+                <div class="fade-in-delay-2">
+                    <a href="./index.html">
+                        <button
+                            class="bg-primary text-white px-8 py-4 !rounded-button font-semibold hover:bg-primary/90 transition-all duration-300 whitespace-nowrap">
+                            ← Back to Home
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Overview -->
+    <section id="services" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="service-card bg-white p-8 rounded-xl shadow-lg border border-gray-100"
+                    data-service="bookkeeping">
+                    <div class="bg-blue-50 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="ri-book-line text-2xl text-primary"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-secondary mb-4 text-center">Bookkeeping & Accounting
+                    </h3>
+                    <p class="text-gray-600 text-center mb-6">Stay organized with accurate, stress-free bookkeeping.
+                    </p>
+                    <button
+                        class="w-full bg-primary text-white py-3 !rounded-button font-semibold hover:bg-primary/90 transition-colors whitespace-nowrap"
+                        onclick="toggleServiceDetails('bookkeeping')">
+                        Learn More Details
+                    </button>
+                </div>
+
+                <div class="service-card bg-white p-8 rounded-xl shadow-lg border border-gray-100" data-service="tax">
+                    <div class="bg-green-50 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="ri-file-text-line text-2xl text-green-600"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-secondary mb-4 text-center">Financial Reporting
+
+
+                    </h3>
+                    <p class="text-gray-600 text-center mb-6">Clear reports that show where your business stands.</p>
+                    <button
+                        class="w-full bg-green-600 text-white py-3 !rounded-button font-semibold hover:bg-green-700 transition-colors whitespace-nowrap"
+                        onclick="toggleServiceDetails('tax')">
+                        Learn More Details
+                    </button>
+                </div>
+
+                <div class="service-card bg-white p-8 rounded-xl shadow-lg border border-gray-100"
+                    data-service="payroll">
+                    <div class="bg-purple-50 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="ri-team-line text-2xl text-purple-600"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-secondary mb-4 text-center">Compliance & Tax Support
+                    </h3>
+                    <p class="text-gray-600 text-center mb-6">Year-end books ready for smooth tax filing and audits.</p>
+                    <button
+                        class="w-full bg-purple-600 text-white py-3 !rounded-button font-semibold hover:bg-purple-700 transition-colors whitespace-nowrap"
+                        onclick="toggleServiceDetails('payroll')">
+                        Learn More Details
+                    </button>
+                </div>
+
+                <div class="service-card bg-white p-8 rounded-xl shadow-lg border border-gray-100"
+                    data-service="advisory">
+                    <div class="bg-orange-50 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="ri-lightbulb-line text-2xl text-orange-600"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-secondary mb-4 text-center">Advisory & Insights
+                    </h3>
+                    <p class="text-gray-600 text-center mb-6">Smart financial advice to help your business grow.</p>
+                    <button
+                        class="w-full bg-orange-600 text-white py-3 !rounded-button font-semibold hover:bg-orange-700 transition-colors whitespace-nowrap"
+                        onclick="toggleServiceDetails('advisory')">
+                        Learn More Details
+                    </button>
+                </div>
+                <div class="service-card bg-white p-8 rounded-xl shadow-lg border border-gray-100"
+                    data-service="advisory">
+                    <div class="bg-orange-50 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="ri-lightbulb-line text-2xl text-orange-600"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-secondary mb-4 text-center">Data Migration & Setup</h3>
+                    <p class="text-gray-600 text-center mb-6">Seamless moves between QuickBooks, Xero, Sage, and more.
+                    </p>
+                    <button
+                        class="w-full bg-orange-600 text-white py-3 !rounded-button font-semibold hover:bg-orange-700 transition-colors whitespace-nowrap"
+                        onclick="toggleServiceDetails('advisory')">
+                        Learn More Details
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Pricing Plans -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-secondary mb-4">Choose Your Service Package</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Flexible pricing plans designed to meet the needs of
+                    businesses at every stage of growth</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="pricing-card bg-white border-2 border-gray-200 rounded-xl p-8 text-center">
+                    <h3 class="text-2xl font-bold text-secondary mb-4">Basic Package</h3>
+                    <div class="text-4xl font-bold text-primary mb-6">$299<span
+                            class="text-lg text-gray-500">/month</span></div>
+                    <ul class="space-y-4 mb-8 text-left">
+                        <li class="flex items-center">
+                            <i class="ri-check-line text-green-500 mr-3"></i>
+                            <span>Monthly Bookkeeping</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="ri-check-line text-green-500 mr-3"></i>
+                            <span>Basic Tax Preparation</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="ri-check-line text-green-500 mr-3"></i>
+                            <span>Financial Reports</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="ri-check-line text-green-500 mr-3"></i>
+                            <span>Email Support</span>
+                        </li>
+                    </ul>
+                    <button
+                        class="w-full bg-gray-200 text-secondary py-3 !rounded-button font-semibold hover:bg-gray-300 transition-colors whitespace-nowrap">
+                        Get Started
+                    </button>
+                    <p class="text-sm text-gray-500 mt-4">Perfect for small businesses</p>
+                </div>
+
+                <div class="pricing-card featured bg-white border-2 border-primary rounded-xl p-8 text-center relative">
+                    <div
+                        class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-primary text-white px-6 py-2 rounded-full text-sm font-semibold">
+                        Most Popular
+                    </div>
+                    <h3 class="text-2xl font-bold text-secondary mb-4">Professional Package</h3>
+                    <div class="text-4xl font-bold text-primary mb-6">$599<span
+                            class="text-lg text-gray-500">/month</span></div>
+                    <ul class="space-y-4 mb-8 text-left">
+                        <li class="flex items-center">
+                            <i class="ri-check-line text-green-500 mr-3"></i>
+                            <span>Weekly Bookkeeping</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="ri-check-line text-green-500 mr-3"></i>
+                            <span>Advanced Tax Planning</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="ri-check-line text-green-500 mr-3"></i>
+                            <span>Payroll Management</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="ri-check-line text-green-500 mr-3"></i>
+                            <span>Financial Advisory</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="ri-check-line text-green-500 mr-3"></i>
+                            <span>Priority Phone Support</span>
+                        </li>
+                    </ul>
+                    <button
+                        class="w-full bg-primary text-white py-3 !rounded-button font-semibold hover:bg-primary/90 transition-colors whitespace-nowrap">
+                        Get Started
+                    </button>
+                    <p class="text-sm text-gray-500 mt-4">Ideal for growing businesses</p>
+                </div>
+
+                <div class="pricing-card bg-white border-2 border-gray-200 rounded-xl p-8 text-center">
+                    <h3 class="text-2xl font-bold text-secondary mb-4">Enterprise Package</h3>
+                    <div class="text-4xl font-bold text-primary mb-6">$999<span
+                            class="text-lg text-gray-500">/month</span></div>
+                    <ul class="space-y-4 mb-8 text-left">
+                        <li class="flex items-center">
+                            <i class="ri-check-line text-green-500 mr-3"></i>
+                            <span>Daily Bookkeeping</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="ri-check-line text-green-500 mr-3"></i>
+                            <span>Comprehensive Tax Services</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="ri-check-line text-green-500 mr-3"></i>
+                            <span>Full Payroll & Benefits</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="ri-check-line text-green-500 mr-3"></i>
+                            <span>Strategic Advisory</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="ri-check-line text-green-500 mr-3"></i>
+                            <span>Dedicated Account Manager</span>
+                        </li>
+                    </ul>
+                    <button
+                        class="w-full bg-secondary text-white py-3 !rounded-button font-semibold hover:bg-secondary/90 transition-colors whitespace-nowrap">
+                        Contact Sales
+                    </button>
+                    <p class="text-sm text-gray-500 mt-4">For large enterprises</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Comparison Table -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-secondary mb-4">Service Comparison</h2>
+                <p class="text-xl text-gray-600">Compare features across all our service packages</p>
+            </div>
+            <div class="comparison-table bg-white rounded-xl shadow-lg overflow-hidden">
+                <table class="w-full">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th class="text-left p-6 font-semibold text-secondary">Features</th>
+                            <th class="text-center p-6 font-semibold text-secondary">Basic</th>
+                            <th class="text-center p-6 font-semibold text-primary">Professional</th>
+                            <th class="text-center p-6 font-semibold text-secondary">Enterprise</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                        <tr>
+                            <td class="p-6 font-medium">Bookkeeping Frequency</td>
+                            <td class="p-6 text-center">Monthly</td>
+                            <td class="p-6 text-center bg-blue-50">Weekly</td>
+                            <td class="p-6 text-center">Daily</td>
+                        </tr>
+                        <tr>
+                            <td class="p-6 font-medium">Tax Preparation</td>
+                            <td class="p-6 text-center"><i class="ri-check-line text-green-500"></i></td>
+                            <td class="p-6 text-center bg-blue-50"><i class="ri-check-line text-green-500"></i></td>
+                            <td class="p-6 text-center"><i class="ri-check-line text-green-500"></i></td>
+                        </tr>
+                        <tr>
+                            <td class="p-6 font-medium">Payroll Management</td>
+                            <td class="p-6 text-center"><i class="ri-close-line text-red-500"></i></td>
+                            <td class="p-6 text-center bg-blue-50"><i class="ri-check-line text-green-500"></i></td>
+                            <td class="p-6 text-center"><i class="ri-check-line text-green-500"></i></td>
+                        </tr>
+                        <tr>
+                            <td class="p-6 font-medium">Financial Advisory</td>
+                            <td class="p-6 text-center"><i class="ri-close-line text-red-500"></i></td>
+                            <td class="p-6 text-center bg-blue-50"><i class="ri-check-line text-green-500"></i></td>
+                            <td class="p-6 text-center"><i class="ri-check-line text-green-500"></i></td>
+                        </tr>
+                        <tr>
+                            <td class="p-6 font-medium">Dedicated Account Manager</td>
+                            <td class="p-6 text-center"><i class="ri-close-line text-red-500"></i></td>
+                            <td class="p-6 text-center bg-blue-50"><i class="ri-close-line text-red-500"></i></td>
+                            <td class="p-6 text-center"><i class="ri-check-line text-green-500"></i></td>
+                        </tr>
+                        <tr>
+                            <td class="p-6 font-medium">Support Level</td>
+                            <td class="p-6 text-center">Email</td>
+                            <td class="p-6 text-center bg-blue-50">Phone & Email</td>
+                            <td class="p-6 text-center">24/7 Priority</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service-Specific Testimonials -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-secondary mb-4">What Our Clients Say</h2>
+                <p class="text-xl text-gray-600">Real feedback from businesses using our services</p>
+            </div>
+            <div class="testimonial-grid">
+                <div class="bg-blue-50 p-8 rounded-xl">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-blue-200 rounded-full flex items-center justify-center mr-4">
+                            <i class="ri-book-line text-blue-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-secondary">Bookkeeping Service</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i
+                                    class="ri-star-fill"></i><i class="ri-star-fill"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">"The bookkeeping service has transformed how we manage our finances.
+                        Everything is organized, accurate, and accessible whenever we need it."</p>
+                    <div class="text-sm">
+                        <p class="font-semibold text-secondary">Amanda Foster</p>
+                        <p class="text-gray-500">Founder, Digital Marketing Pro</p>
+                    </div>
+                </div>
+
+                <div class="bg-green-50 p-8 rounded-xl">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-green-200 rounded-full flex items-center justify-center mr-4">
+                            <i class="ri-file-text-line text-green-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-secondary">Tax Filing Service</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i
+                                    class="ri-star-fill"></i><i class="ri-star-fill"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">"Their tax expertise saved us thousands of dollars and gave us peace
+                        of mind knowing everything was filed correctly and on time."</p>
+                    <div class="text-sm">
+                        <p class="font-semibold text-secondary">Marcus Thompson</p>
+                        <p class="text-gray-500">CEO, Thompson Construction</p>
+                    </div>
+                </div>
+
+                <div class="bg-purple-50 p-8 rounded-xl">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-purple-200 rounded-full flex items-center justify-center mr-4">
+                            <i class="ri-team-line text-purple-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-secondary">Payroll Management</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i
+                                    class="ri-star-fill"></i><i class="ri-star-fill"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">"Payroll used to be a monthly headache. Now it's completely automated
+                        and our employees are always paid accurately and on time."</p>
+                    <div class="text-sm">
+                        <p class="font-semibold text-secondary">Lisa Park</p>
+                        <p class="text-gray-500">HR Director, Creative Solutions Inc</p>
+                    </div>
+                </div>
+
+                <div class="bg-orange-50 p-8 rounded-xl">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-orange-200 rounded-full flex items-center justify-center mr-4">
+                            <i class="ri-lightbulb-line text-orange-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-secondary">Financial Advisory</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i
+                                    class="ri-star-fill"></i><i class="ri-star-fill"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">"The strategic insights and financial planning advice have been
+                        invaluable in helping us make informed decisions for growth."</p>
+                    <div class="text-sm">
+                        <p class="font-semibold text-secondary">James Wilson</p>
+                        <p class="text-gray-500">Owner, Wilson Manufacturing</p>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 p-8 rounded-xl">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center mr-4">
+                            <i class="ri-award-line text-gray-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-secondary">Complete Package</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i
+                                    class="ri-star-fill"></i><i class="ri-star-fill"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">"Having all our accounting needs handled by one reliable team has
+                        streamlined our operations and improved our financial health significantly."</p>
+                    <div class="text-sm">
+                        <p class="font-semibold text-secondary">Rachel Davis</p>
+                        <p class="text-gray-500">CFO, TechVenture Labs</p>
+                    </div>
+                </div>
+
+                <div class="bg-indigo-50 p-8 rounded-xl">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-indigo-200 rounded-full flex items-center justify-center mr-4">
+                            <i class="ri-shield-check-line text-indigo-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-secondary">Compliance & Support</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i
+                                    class="ri-star-fill"></i><i class="ri-star-fill"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">"Their proactive approach to compliance and exceptional customer
+                        support makes them an invaluable partner for our business."</p>
+                    <div class="text-sm">
+                        <p class="font-semibold text-secondary">Kevin Martinez</p>
+                        <p class="text-gray-500">President, Martinez Consulting</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-primary">
+        <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-white mb-6">Ready to Transform Your Business Finances?</h2>
+            <p class="text-xl text-white/90 mb-8">Join hundreds of satisfied clients who trust Bram Accounting with
+                their financial success</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button
+                    class="bg-white text-primary px-8 py-4 !rounded-button font-semibold hover:bg-gray-50 transition-all duration-300 whitespace-nowrap">
+                    Schedule Free Consultation
+                </button>
+                <a href="https://wa.me/923226790006">
+                    <button
+                        class="border-2 border-white text-white px-8 py-4 !rounded-button font-semibold hover:bg-white hover:text-primary transition-all duration-300 whitespace-nowrap">
+                        Call Now: +92 322 679 0006
+                    </button>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                <div class="md:col-span-2">
+                    <div class="flex items-center space-x-3">
+                        <img src="./image/PNG (4).png" alt="Bram Accounting Logo"
+                            class="h-9 mb-3 w-auto object-contain flex-shrink-0">
+                        <h1 class="text-1xl font-bold text-white">Bram Accounting</h1>
+                    </div>
+                    <p class="text-gray-300 mb-6 max-w-md">
+                        Professional bookkeeping services for businesses and CPA firms. Trusted since 2016.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="https://www.facebook.com/bram.accounting">
+                            <div
+                                class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition-colors cursor-pointer">
+                                <i class="ri-facebook-fill text-lg"></i>
+                            </div>
+                        </a>
+
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Services</h3>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="#" class="hover:text-white transition-colors">Bookkeeping</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Tax Preparation</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Financial Reporting</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Payroll Services</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Contact</h3>
+                    <ul class="space-y-2 text-gray-300">
+                        <li class="flex items-center space-x-2">
+                            <i class="ri-phone-line text-sm"></i>
+                            <span>+1 914 370 7514</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <i class="ri-mail-line text-sm"></i>
+                            <span>hello@bramaccounting.com</span>
+                        </li>
+                        <li class="flex items-start space-x-2">
+                            <i class="ri-map-pin-line text-sm mt-1"></i>
+                            <span>101/A new model town burewala, Pakistan</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm mb-4 md:mb-0">
+                    © 2025 Bram Accounting. All rights reserved.
+                </p>
+                <div class="flex space-x-6 text-sm text-gray-400">
+                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script id="service-details-toggle">
+        document.addEventListener('DOMContentLoaded', function () {
+            window.toggleServiceDetails = function (serviceType) {
+                const detailsElement = document.getElementById(serviceType + '-details');
+                const allDetails = document.querySelectorAll('.service-details');
+
+                allDetails.forEach(detail => {
+                    if (detail.id !== serviceType + '-details') {
+                        detail.classList.remove('expanded');
+                    }
+                });
+                detailsElement.classList.toggle('expanded');
+                if (detailsElement.classList.contains('expanded')) {
+                    setTimeout(() => {
+                        detailsElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 300);
+                }
+            };
+        });
+    </script>
+
+    <script id="navigation-scroll">
+        document.addEventListener('DOMContentLoaded', function () {
+            const nav = document.querySelector('nav');
+            const navLinks = document.querySelectorAll('nav a[href^="#"]');
+            window.addEventListener('scroll', function () {
+                if (window.scrollY > 50) {
+                    nav.classList.add('shadow-lg');
+                } else {
+                    nav.classList.remove('shadow-lg');
+                }
+            });
+            navLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        const offsetTop = targetElement.offsetTop - 64;
+                        window.scrollTo({
+                            top: offsetTop,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script id="mobile-menu">
+        document.addEventListener('DOMContentLoaded', function () {
+            const mobileMenuButton = document.querySelector('button.md\\:hidden');
+            const navLinks = document.querySelector('.hidden.md\\:flex');
+            mobileMenuButton.addEventListener('click', function () {
+                navLinks.classList.toggle('hidden');
+                navLinks.classList.toggle('flex');
+                navLinks.classList.toggle('flex-col');
+                navLinks.classList.toggle('absolute');
+                navLinks.classList.toggle('top-16');
+                navLinks.classList.toggle('left-0');
+                navLinks.classList.toggle('right-0');
+                navLinks.classList.toggle('bg-white');
+                navLinks.classList.toggle('shadow-lg');
+                navLinks.classList.toggle('p-4');
+            });
+        });
+    </script>
+
+    <script id="form-validation">
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.querySelector('form');
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                const name = form.querySelector('input[type="text"]').value;
+                const email = form.querySelector('input[type="email"]').value;
+                if (!name || !email) {
+                    alert('Please fill in all required fields.');
+                    return;
+                }
+                alert('Thank you for your inquiry! We will contact you within 24 hours.');
+                form.reset();
+            });
+        });
+    </script>
+
+</body>
+
+</html>

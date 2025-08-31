@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services - Bram Accounting</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2B4B80',
+                        secondary: '#1A365D'
+                    },
+                    borderRadius: {
+                        'none': '0px',
+                        'sm': '4px',
+                        DEFAULT: '8px',
+                        'md': '12px',
+                        'lg': '16px',
+                        'xl': '20px',
+                        '2xl': '24px',
+                        '3xl': '32px',
+                        'full': '9999px',
+                        'button': '8px'
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :where([class^="ri-"])::before {
+            content: "\f3c2";
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .fade-in-delay-1 {
+            animation-delay: 0.2s;
+        }
+
+        .fade-in-delay-2 {
+            animation-delay: 0.4s;
+        }
+
+        .fade-in-delay-3 {
+            animation-delay: 0.6s;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hover-scale {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .hover-scale:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-card {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(30, 136, 229, 0.15);
+        }
+
+        .service-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out;
+        }
+
+        .service-details.expanded {
+            max-height: 2000px;
+        }
+
+        .pricing-card {
+            transition: all 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
+        }
+
+        .pricing-card.featured {
+            transform: scale(1.05);
+            border: 3px solid #1E88E5;
+        }
+
+        .comparison-table {
+            overflow-x: auto;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+    </style>
+</head>
+
+<body class="font-inter bg-white">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 bg-white shadow-sm z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <img src="./image/PNG (3).png" alt="Bram Accounting Logo"
+                        class="h-10 w-auto object-contain flex-shrink-0">
+                    <h1 class="text-2xl font-bold text-secondary">Bram Accounting</h1>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="./index.html" class="text-secondary hover:text-primary transition-colors">Home</a>
+                    <a href="./services.html" class="text-secondary hover:text-primary transition-colors">Services</a>
+                    <a href="./about.html" class="text-secondary hover:text-primary transition-colors">About</a>
+                    <a href="./firm.html" class="text-secondary hover:text-primary transition-colors">Company</a>
+                    <a href="./contact.html" class="text-secondary hover:text-primary transition-colors">Contact</a>
+                </div>
+
+                <!-- CTA Button -->
+                <a href="https://wa.me/923226790006">
+                    <button
+                    class="hidden md:inline bg-primary text-white px-6 py-2 !rounded-button hover:bg-blue-600 transition-colors whitespace-nowrap ripple">
+                    Book Free Consultation
+                </button>
+                 </a>
+
+                <!-- Mobile Hamburger -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" class="text-gray-700 focus:outline-none">
+                        <!-- Hamburger icon -->
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu (hidden by default) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg">
+            <div class="px-4 pt-2 pb-4 space-y-2">
+                <a href="./index.html" class="block text-secondary hover:text-primary transition-colors">Home</a>
+                <a href="./services.html" class="block text-secondary hover:text-primary transition-colors">Services</a>
+                <a href="./about.html" class="block text-secondary hover:text-primary transition-colors">About</a>
+                <a href="./firm.html" class="block text-secondary hover:text-primary transition-colors">Company</a>
+                <a href="./contact.html" class="block text-secondary hover:text-primary transition-colors">Contact</a>
+                <a href="https://wa.me/923226790006">
+                    <button
+                    class="hidden md:inline bg-primary text-white px-6 py-2 !rounded-button hover:bg-blue-600 transition-colors whitespace-nowrap ripple">
+                    Book Free Consultation
+                </button>
+                 </a>
+            </div>
+        </div>
+    </nav>
+
+    <script>
+        // Toggle mobile menu
+        document.getElementById("mobile-menu-button").addEventListener("click", function () {
+            document.getElementById("mobile-menu").classList.toggle("hidden");
+        });
+    </script>
+
+
+
+
+    <!-- Contact Info Section -->
+    <section id="contact" class="py-40 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-secondary mb-4">Get In Touch</h2>
+                <p class="text-xl text-gray-600">We’re here to answer your questions and provide the support you need
+                </p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+
+                <!-- Phone -->
+                <div class="bg-white p-8 rounded-xl shadow-lg text-center hover:shadow-2xl transition">
+                    <div
+                        class="w-16 h-16 mx-auto mb-6 flex items-center justify-center rounded-full bg-primary text-white text-2xl">
+                        <i class="ri-phone-line"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 text-secondary">Phone</h3>
+                    <p class="text-gray-600">+1 914 370 7514</p>
+                </div>
+
+                <!-- Email -->
+                <div class="bg-white p-8 rounded-xl shadow-lg text-center hover:shadow-2xl transition">
+                    <div
+                        class="w-16 h-16 mx-auto mb-6 flex items-center justify-center rounded-full bg-primary text-white text-2xl">
+                        <i class="ri-mail-line"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 text-secondary">Email</h3>
+                    <p class="text-gray-600">hello@bramaccounting.com</p>
+                </div>
+
+                <!-- Social Media -->
+                <div class="bg-white p-8 rounded-xl shadow-lg text-center hover:shadow-2xl transition">
+                    <div
+                        class="w-16 h-16 mx-auto mb-6 flex items-center justify-center rounded-full bg-primary text-white text-2xl">
+                        <i class="ri-links-line"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 text-secondary">Follow Us</h3>
+                    <div class="flex justify-center space-x-6 text-2xl text-gray-600">
+                        <a href="https://facebook.com" target="_blank" class="hover:text-blue-600"><i
+                                class="ri-facebook-circle-fill"></i></a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Make sure you have Remix Icons in <head> -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
+
+
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-primary">
+        <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-white mb-6">Ready to Transform Your Business Finances?</h2>
+            <p class="text-xl text-white/90 mb-8">Join hundreds of satisfied clients who trust Bram Accounting with
+                their financial success</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="https://wa.me/923226790006">
+                    <button
+                    class="bg-white text-primary px-8 py-4 !rounded-button font-semibold hover:bg-gray-50 transition-all duration-300 whitespace-nowrap">
+                    Schedule Free Consultation
+                </button>
+                </a>
+                
+                <a href="https://wa.me/923226790006">
+                    <button
+                    class="border-2 border-white text-white px-8 py-4 !rounded-button font-semibold hover:bg-white hover:text-primary transition-all duration-300 whitespace-nowrap">
+                    Call Now: +92 322 679 0006
+                </button>
+                </a>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                <div class="md:col-span-2">
+                    <div class="flex items-center space-x-3">
+                        <img src="./image/PNG (4).png" alt="Bram Accounting Logo"
+                            class="h-9 mb-3 w-auto object-contain flex-shrink-0">
+                        <h1 class="text-1xl font-bold text-white">Bram Accounting</h1>
+                    </div>
+                    <p class="text-gray-300 mb-6 max-w-md">
+                        Professional bookkeeping services for businesses and CPA firms. Trusted since 2016.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="https://www.facebook.com/bram.accounting">
+                            <div
+                                class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition-colors cursor-pointer">
+                                <i class="ri-facebook-fill text-lg"></i>
+                            </div>
+                        </a>
+
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Services</h3>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="#" class="hover:text-white transition-colors">Bookkeeping</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Tax Preparation</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Financial Reporting</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Payroll Services</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Contact</h3>
+                    <ul class="space-y-2 text-gray-300">
+                        <li class="flex items-center space-x-2">
+                            <i class="ri-phone-line text-sm"></i>
+                            <span>+1 914 370 7514</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <i class="ri-mail-line text-sm"></i>
+                            <span>hello@bramaccounting.com</span>
+                        </li>
+                        <li class="flex items-start space-x-2">
+                            <i class="ri-map-pin-line text-sm mt-1"></i>
+                            <span>101/A new model town burewala, Pakistan</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm mb-4 md:mb-0">
+                    © 2025 Bram Accounting. All rights reserved.
+                </p>
+                <div class="flex space-x-6 text-sm text-gray-400">
+                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script id="service-details-toggle">
+        document.addEventListener('DOMContentLoaded', function () {
+            window.toggleServiceDetails = function (serviceType) {
+                const detailsElement = document.getElementById(serviceType + '-details');
+                const allDetails = document.querySelectorAll('.service-details');
+
+                allDetails.forEach(detail => {
+                    if (detail.id !== serviceType + '-details') {
+                        detail.classList.remove('expanded');
+                    }
+                });
+                detailsElement.classList.toggle('expanded');
+                if (detailsElement.classList.contains('expanded')) {
+                    setTimeout(() => {
+                        detailsElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 300);
+                }
+            };
+        });
+    </script>
+
+    <script id="navigation-scroll">
+        document.addEventListener('DOMContentLoaded', function () {
+            const nav = document.querySelector('nav');
+            const navLinks = document.querySelectorAll('nav a[href^="#"]');
+            window.addEventListener('scroll', function () {
+                if (window.scrollY > 50) {
+                    nav.classList.add('shadow-lg');
+                } else {
+                    nav.classList.remove('shadow-lg');
+                }
+            });
+            navLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        const offsetTop = targetElement.offsetTop - 64;
+                        window.scrollTo({
+                            top: offsetTop,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script id="mobile-menu">
+        document.addEventListener('DOMContentLoaded', function () {
+            const mobileMenuButton = document.querySelector('button.md\\:hidden');
+            const navLinks = document.querySelector('.hidden.md\\:flex');
+            mobileMenuButton.addEventListener('click', function () {
+                navLinks.classList.toggle('hidden');
+                navLinks.classList.toggle('flex');
+                navLinks.classList.toggle('flex-col');
+                navLinks.classList.toggle('absolute');
+                navLinks.classList.toggle('top-16');
+                navLinks.classList.toggle('left-0');
+                navLinks.classList.toggle('right-0');
+                navLinks.classList.toggle('bg-white');
+                navLinks.classList.toggle('shadow-lg');
+                navLinks.classList.toggle('p-4');
+            });
+        });
+    </script>
+
+    <script id="form-validation">
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.querySelector('form');
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                const name = form.querySelector('input[type="text"]').value;
+                const email = form.querySelector('input[type="email"]').value;
+                if (!name || !email) {
+                    alert('Please fill in all required fields.');
+                    return;
+                }
+                alert('Thank you for your inquiry! We will contact you within 24 hours.');
+                form.reset();
+            });
+        });
+    </script>
+
+</body>
+
+</html>
